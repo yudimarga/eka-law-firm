@@ -146,3 +146,18 @@ loadMoreBtn.onclick = () => {
     loadMoreBtn.style.display = "none";
   }
 };
+
+// close tombol message
+document.querySelector(".message .close").onclick = (e) => {
+  btnLoading.style.display = "none";
+  e.preventDefault();
+};
+
+// close di luar message box
+
+const message = document.querySelector(".message");
+window.onclick = (e) => {
+  if (e.target === message) {
+    message.style.display = "none";
+  }
+};

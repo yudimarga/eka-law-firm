@@ -34,6 +34,8 @@
     <!-- animated on scrool -->
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Bootstrap -->
   </head>
   <body>
     <!--Header Start -->
@@ -900,29 +902,55 @@
       </div>
 
       <div class="row" id="konsultasi">
-        <form action="">
+        <form name="elf-konsultasi-form">
           <h2>Konsultasi Disini</h2>
           <div class="input-group">
             <i data-feather="user"></i>
-            <input type="text" placeholder="nama" />
+            <input type="text" placeholder="Nama" name="Nama" />
           </div>
           <div class="input-group">
             <i data-feather="mail"></i>
-            <input type="text" placeholder="email" />
+            <input type="text" placeholder="Email" name="Email" />
           </div>
           <div class="input-group">
             <i data-feather="phone"></i>
-            <input type="text" placeholder="no hp" />
+            <input type="text" placeholder="Whatsapp" name="Whatsapp" />
           </div>
-          <div class="input-group" id="input-group">
+          <div class="input-group">
             <i data-feather="message-square"></i>
-            <input type="text" placeholder="pesan" />
+            <input type="text" placeholder="Pesan" name="Pesan" />
           </div>
-          <button type="submit" class="btn">kirim pesan</button>
+          <!-- <a href="" id="message-btn">
+          </a> -->
+          <button type="submit" class="btn" id="btn-kirim">kirim pesan</button>
         </form>
       </div>
     </section>
     <!-- Contact Section end -->
+
+    <!-- message start -->
+    <div class="message" id="btn-loading">
+      <div class="message-container">
+        <a href="#" class="close"><i data-feather="x"></i></a>
+        <div class="message-content">
+          <img src="img/pesan.png" alt="event terbaru" />
+          <div class="layanan-content">
+            <h3>Terimakasih</h3>
+            <p>
+              Pesan Anda telah terkirim, kami akan pelajari pesan anda dan akan
+              menghubungi anda secepatnya, Salam hangat (Eka Law Firm)
+            </p>
+            <div class="message-star">
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer start -->
     <footer>
@@ -971,6 +999,27 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init();
+    </script>
+
+    <!-- form script -->
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwxweqOpaiULupAGb7Jyq1vlBvwwfN6OTeZ8XGq9CXEXODZCkR1oBjmNrEQnaxbpoYj/exec";
+      const form = document.forms["elf-konsultasi-form"];
+      const btnKirim = document.querySelector("#btn-kirim");
+      const btnLoading = document.querySelector("#btn-loading");
+
+      form.addEventListener("submit", (e) => {
+        btnLoading.style.display = "flex";
+
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            form.reset();
+            console.log("Success!", response);
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
     </script>
   </body>
 </html>

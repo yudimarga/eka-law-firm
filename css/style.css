@@ -1253,6 +1253,23 @@ span.text {
   cursor: pointer;
 }
 
+.loader {
+  display: none;
+}
+
+.loader i {
+  animation: loader 2s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Footer */
 footer {
   background-color: var(--primary);
@@ -1295,6 +1312,73 @@ footer .credit p {
 footer .credit a {
   color: #fff;
   font-weight: 700;
+}
+
+/* messages content */
+
+.message {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100000;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.message-container {
+  position: relative;
+  background-color: #fefefe;
+  color: #000;
+  margin: 15% auto;
+  padding: 1.3rem;
+  border: 1px solid #050403;
+  width: 60%;
+  animation: animateMessage 0.5s;
+}
+
+@keyframes animateMessage {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+}
+
+.message-content {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.message-content img {
+  height: 10rem;
+  margin-right: 2rem;
+}
+
+.message-content h3 {
+  font-size: 2rem;
+  padding: 0.5rem 0;
+  color: crimson;
+}
+
+.message-content p {
+  font-size: 1.3rem;
+  padding: 2rem 0;
+}
+
+.message-star {
+  color: var(--primary);
+  padding: 0.5rem 0;
 }
 
 /* Media Quaeriss */
@@ -1400,6 +1484,16 @@ footer .credit a {
   .sengketa {
     flex-wrap: wrap;
   }
+
+  .message-container {
+    height: 60%;
+  }
+
+  .message-content {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .proteksi h2 {
@@ -1438,5 +1532,9 @@ footer .credit a {
     width: 100%;
     display: flex;
     align-items: center;
+  }
+
+  .message-container {
+    height: 40%;
   }
 }
